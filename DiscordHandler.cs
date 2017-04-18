@@ -37,6 +37,18 @@ namespace Discord.OAuth2
             AddClaim(identity, user, "verified", "urn:discord:verified", ClaimValueTypes.Boolean);
             AddClaim(identity, user, "email", ClaimTypes.Email, ClaimValueTypes.Email);
 
+            //Add config to change
+            if (Options.SaveTokens)
+            {
+                ticket.Properties.StoreTokens(new[]
+                {
+                    new AuthenticationToken { Name = "access_token", Value = tokens.AccessToken },
+                    new AuthenticationToken { Name = "refresh_token", Value = tokens.RefreshToken},
+                    new AuthenticationToken { Name = "expires_in", Value = tokens.ExpiresIn},
+                    new AuthenticationToken { Name = "token_type", Value = tokens.TokenType}
+                });
+            }
+
             await Options.Events.CreatingTicket(context);
             return context.Ticket;
         }
