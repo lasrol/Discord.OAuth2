@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>1.0.1</Version>
+    <VersionPrefix>1.0.1</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
     <Description>ASP.Net Core middleware that enables an application to support Discord's OAuth 2.0 authentication workflow.</Description>
     <Authors>RogueException</Authors>
     <TargetFrameworks>netstandard1.3</TargetFrameworks>

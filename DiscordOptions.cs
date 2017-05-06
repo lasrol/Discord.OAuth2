@@ -11,11 +11,11 @@ namespace Discord.OAuth2
         {
             AuthenticationScheme = DiscordDefaults.AuthenticationScheme;
             DisplayName = AuthenticationScheme;
-            CallbackPath = new PathString("/signin-discord");
+            ClaimsIssuer = DiscordDefaults.Issuer;
+            CallbackPath = DiscordDefaults.CallbackPath;
             AuthorizationEndpoint = DiscordDefaults.AuthorizationEndpoint;
             TokenEndpoint = DiscordDefaults.TokenEndpoint;
             UserInformationEndpoint = DiscordDefaults.UserInformationEndpoint;
-            Scope.Add("identify");
         }
         
         /// <summary> Gets or sets the Discord-assigned appId. </summary>

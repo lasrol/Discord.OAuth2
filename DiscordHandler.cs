@@ -27,15 +27,16 @@ namespace Discord.OAuth2
 
             var user = JObject.Parse(await response.Content.ReadAsStringAsync());
 
-            var ticket = new AuthenticationTicket(new ClaimsPrincipal(identity), properties, Options.AuthenticationScheme);
-            var context = new OAuthCreatingTicketContext(ticket, Context, Options, Backchannel, tokens, user);
-
             AddClaim(identity, user, "id", ClaimTypes.NameIdentifier, ClaimValueTypes.UInteger64);
             AddClaim(identity, user, "username", ClaimTypes.Name, ClaimValueTypes.String);
             AddClaim(identity, user, "discriminator", "urn:discord:discriminator", ClaimValueTypes.UInteger32);
             AddClaim(identity, user, "avatar", "urn:discord:avatar", ClaimValueTypes.String);
             AddClaim(identity, user, "verified", "urn:discord:verified", ClaimValueTypes.Boolean);
             AddClaim(identity, user, "email", ClaimTypes.Email, ClaimValueTypes.Email);
+
+            var principal = new ClaimsPrincipal(identity);
+            var ticket = new AuthenticationTicket(principal, properties, Options.AuthenticationScheme);
+            var context = new OAuthCreatingTicketContext(ticket, Context, Options, Backchannel, tokens, user);
 
             //Add config to change
             if (Options.SaveTokens)

@@ -1,4 +1,6 @@
-﻿namespace Discord.OAuth2
+﻿using Microsoft.AspNetCore.Builder;
+
+namespace Discord.OAuth2
 {
     /// <summary> A collection of default values used by DiscordMiddleware. </summary>
     public static class DiscordDefaults
@@ -12,5 +14,13 @@
         public static readonly string TokenEndpoint = "https://discordapp.com/api/oauth2/token";
         /// <summary> The default user information endpoint used to generate claims. </summary>
         public static readonly string UserInformationEndpoint = "https://discordapp.com/api/users/@me";
+        /// <summary>
+        /// Default value for <see cref="AuthenticationOptions.ClaimsIssuer"/>.
+        /// </summary>
+        public const string Issuer = "Discord";
+        /// <summary>
+        /// Default value for <see cref="RemoteAuthenticationOptions.CallbackPath"/>.
+        /// </summary>
+        public const string CallbackPath = "/signin-discord";
     }
 }
